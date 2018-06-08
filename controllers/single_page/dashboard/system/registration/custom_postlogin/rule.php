@@ -115,7 +115,7 @@ class Rule extends DashboardPageController
             );
         } catch (UserMessageException $x) {
             $this->error->add($x);
-            $this->view($id);
+            return $this->view($id);
         }
     }
 
@@ -139,7 +139,7 @@ class Rule extends DashboardPageController
             );
         } catch (UserMessageException $x) {
             $this->error->add($x);
-            $this->view($id);
+            return $this->view($id);
         }
     }
 }
