@@ -1,0 +1,20 @@
+{
+	"name" : "mlocati-concrete5-packages/login_destination",
+	"description" : "Specify where users should be redirected upon login.",
+	"type" : "concrete5-package",
+	"license" : "MIT",
+	"authors" : [{
+			"name" : "Michele Locati",
+			"email" : "michele@locati.it",
+			"homepage" : "https://mlocati.github.io",
+			"role" : "Author"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/mlocati/login_destination/issues",
+		"source": "https://github.com/mlocati/login_destination"
+	},
+	"require": {
+		"concrete5/core" : ">=8.2.0"
+	}
+}

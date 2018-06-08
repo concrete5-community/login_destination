@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<concrete5-cif version="1.0">
+
+	<singlepages>
+		<page package="login_destination" name="Custom Login Destinations" description="" pagetype="" path="/dashboard/system/registration/custom_postlogin" filename="/dashboard/system/registration/custom_postlogin.php">
+			<attributes>
+				<attributekey handle="meta_keywords"><value>profile, login, redirect, specific, dashboard, administrators, custom, logon, user, group</value></attributekey>
+			</attributes>
+		</page>
+		<page package="login_destination" name="Login Destination Rule" description="" pagetype="" path="/dashboard/system/registration/custom_postlogin/rule" filename="/dashboard/system/registration/custom_postlogin/rule.php">
+			<attributes>
+				<attributekey handle="exclude_nav"><value>1</value></attributekey>
+			</attributes>
+		</page>
+	</singlepages>
+
+</concrete5-cif>

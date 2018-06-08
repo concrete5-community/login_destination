@@ -1,0 +1,21 @@
+#cpl-rules-table {
+	display: none;
+}
+#cpl-rules-table a .label:hover {
+	text-decoration: none;
+}
+.cpl-rule-move {
+	width: 30px;
+}
+.cpl-rule-state {
+	text-align: right;
+}
+.cpl-rule-move-drag {
+	cursor: move;
+}
+#cpl-rules-table.cpl-touch-no .cpl-rule-move-arrow {
+	display: none;
+}
+#cpl-rules-table.cpl-touch-yes .cpl-rule-move-drag {
+	display: none;
+}
