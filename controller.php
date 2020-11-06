@@ -2,6 +2,8 @@
 
 namespace Concrete\Package\LoginDestination;
 
+use Concrete\Core\Database\EntityManager\Provider\ProviderAggregateInterface;
+use Concrete\Core\Database\EntityManager\Provider\StandardPackageProvider;
 use Concrete\Core\Package\Package;
 use Concrete\Core\User\PostLoginLocation;
 use LoginDestination\CustomPostLoginLocation;
@@ -13,7 +15,7 @@ defined('C5_EXECUTE') or die('Access Denied.');
  *
  * Manages the package installation, update and start-up.
  */
-class Controller extends Package
+class Controller extends Package implements ProviderAggregateInterface
 {
     /**
      * The minimum concrete5 version.
@@ -35,15 +37,6 @@ class Controller extends Package
      * @var string
      */
     protected $pkgVersion = '0.9.1';
-
-    /**
-     * Map folders to PHP namespaces, for automatic class autoloading.
-     *
-     * @var array
-     */
-    protected $pkgAutoloaderRegistries = [
-        'src' => 'LoginDestination',
-    ];
 
     /**
      * {@inheritdoc}
@@ -68,10 +61,23 @@ class Controller extends Package
     /**
      * {@inheritdoc}
      *
+     * @see \Concrete\Core\Database\EntityManager\Provider\ProviderAggregateInterface::getEntityManagerProvider()
+     */
+    public function getEntityManagerProvider()
+    {
+        return new StandardPackageProvider($this->app, $this, [
+            'src/Entity' => 'LoginDestination\Entity',
+        ]);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
      * @see \Concrete\Core\Package\Package::install()
      */
     public function install()
     {
+        $this->registerAutoload();
         parent::install();
         $this->installXml();
     }
@@ -92,6 +98,7 @@ class Controller extends Package
      */
     public function on_start()
     {
+        $this->registerAutoload();
         $this->app->bind(PostLoginLocation::class, CustomPostLoginLocation::class);
     }
 
@@ -101,5 +108,13 @@ class Controller extends Package
     private function installXml()
     {
         parent::installContentFile('config/install.xml');
+    }
+
+    private function registerAutoload()
+    {
+        $autoloader = $this->getPackagePath() . '/vendor/autoload.php';
+        if (file_exists($autoloader)) {
+            require_once $autoloader;
+        }
     }
 }
