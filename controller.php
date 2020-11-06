@@ -18,9 +18,9 @@ defined('C5_EXECUTE') or die('Access Denied.');
 class Controller extends Package implements ProviderAggregateInterface
 {
     /**
-     * The minimum concrete5 version.
+     * {@inheritdoc}
      *
-     * @var string
+     * @see \Concrete\Core\Package\Package::$appVersionRequired
      */
     protected $appVersionRequired = '8.2.0';
 
