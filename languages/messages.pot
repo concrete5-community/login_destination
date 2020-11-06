@@ -1,0 +1,256 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: login_destination 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-11-06T10:34:01+01:00\n"
+"PO-Revision-Date: 2020-11-06T10:34:01+01:00\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: packages/login_destination/config/install.xml:5
+msgid "Custom Login Destinations"
+msgstr ""
+
+#. Keywords for page /dashboard/system/registration/custom_postlogin
+#: packages/login_destination/config/install.xml:7
+msgid "profile, login, redirect, specific, dashboard, administrators, custom, logon, user, group"
+msgstr ""
+
+#: packages/login_destination/config/install.xml:10
+msgid "Login Destination Rule"
+msgstr ""
+
+#: packages/login_destination/controller.php:48
+#: packages/login_destination/controllers/single_page/dashboard/system/registration/custom_postlogin.php:26
+msgid "Login Destination"
+msgstr ""
+
+#: packages/login_destination/controller.php:58
+msgid "Allow customizing where a user is redirected upon login."
+msgstr ""
+
+#: packages/login_destination/controllers/single_page/dashboard/system/registration/custom_postlogin/rule.php:27
+msgid "Please Select"
+msgstr ""
+
+#: packages/login_destination/controllers/single_page/dashboard/system/registration/custom_postlogin/rule.php:32
+#: packages/login_destination/controllers/single_page/dashboard/system/registration/custom_postlogin/rule.php:68
+#: packages/login_destination/controllers/single_page/dashboard/system/registration/custom_postlogin/rule.php:132
+msgid "Unable to find the specified rule."
+msgstr ""
+
+#: packages/login_destination/controllers/single_page/dashboard/system/registration/custom_postlogin/rule.php:42
+msgid "If the user is in the following group"
+msgstr ""
+
+#: packages/login_destination/controllers/single_page/dashboard/system/registration/custom_postlogin/rule.php:43
+msgid "If the user is in the following group or in its sub-groups"
+msgstr ""
+
+#: packages/login_destination/controllers/single_page/dashboard/system/registration/custom_postlogin/rule.php:44
+msgid "If the user is in not the following group"
+msgstr ""
+
+#: packages/login_destination/controllers/single_page/dashboard/system/registration/custom_postlogin/rule.php:45
+msgid "If the user is in not the following group or in its sub-groups"
+msgstr ""
+
+#: packages/login_destination/controllers/single_page/dashboard/system/registration/custom_postlogin/rule.php:46
+msgid "If the user is the following one"
+msgstr ""
+
+#: packages/login_destination/controllers/single_page/dashboard/system/registration/custom_postlogin/rule.php:47
+msgid "If the user is not the following one"
+msgstr ""
+
+#: packages/login_destination/controllers/single_page/dashboard/system/registration/custom_postlogin/rule.php:82
+msgid "Please specify a group."
+msgstr ""
+
+#: packages/login_destination/controllers/single_page/dashboard/system/registration/custom_postlogin/rule.php:88
+msgid "Please specify a user."
+msgstr ""
+
+#: packages/login_destination/controllers/single_page/dashboard/system/registration/custom_postlogin/rule.php:91
+msgid "Please specify the rule kind."
+msgstr ""
+
+#: packages/login_destination/controllers/single_page/dashboard/system/registration/custom_postlogin/rule.php:110
+msgid "The new rule has been added."
+msgstr ""
+
+#: packages/login_destination/controllers/single_page/dashboard/system/registration/custom_postlogin/rule.php:110
+msgid "The rule has been updated."
+msgstr ""
+
+#: packages/login_destination/controllers/single_page/dashboard/system/registration/custom_postlogin.php:37
+msgid "The first rule that satisfy the criteria will be executed: you can sort them by using the hamburger icon."
+msgstr ""
+
+#: packages/login_destination/controllers/single_page/dashboard/system/registration/custom_postlogin.php:39
+msgid "If no rule is satisfied, the standard rules defined at the %s page will be used."
+msgstr ""
+
+#: packages/login_destination/single_pages/dashboard/system/registration/custom_postlogin/rule.php:20
+msgid "Rule is enabled?"
+msgstr ""
+
+#: packages/login_destination/single_pages/dashboard/system/registration/custom_postlogin/rule.php:24
+msgid "Yes"
+msgstr ""
+
+#: packages/login_destination/single_pages/dashboard/system/registration/custom_postlogin/rule.php:30
+msgid "No"
+msgstr ""
+
+#: packages/login_destination/single_pages/dashboard/system/registration/custom_postlogin/rule.php:36
+msgid "Rule Kind"
+msgstr ""
+
+#: packages/login_destination/single_pages/dashboard/system/registration/custom_postlogin/rule.php:47
+msgid "Destination"
+msgstr ""
+
+#: packages/login_destination/single_pages/dashboard/system/registration/custom_postlogin/rule.php:53
+#: packages/login_destination/single_pages/dashboard/system/registration/custom_postlogin/rule.php:78
+msgid "Cancel"
+msgstr ""
+
+#: packages/login_destination/single_pages/dashboard/system/registration/custom_postlogin/rule.php:58
+#: packages/login_destination/single_pages/dashboard/system/registration/custom_postlogin/rule.php:79
+msgid "Delete"
+msgstr ""
+
+#: packages/login_destination/single_pages/dashboard/system/registration/custom_postlogin/rule.php:62
+msgid "Save"
+msgstr ""
+
+#: packages/login_destination/single_pages/dashboard/system/registration/custom_postlogin/rule.php:75
+msgid "Are you sure? This action cannot be undone."
+msgstr ""
+
+#: packages/login_destination/single_pages/dashboard/system/registration/custom_postlogin/rule.php:90
+msgid "Delete Rule"
+msgstr ""
+
+#: packages/login_destination/single_pages/dashboard/system/registration/custom_postlogin.php:15
+msgid "No rules defined."
+msgstr ""
+
+#: packages/login_destination/single_pages/dashboard/system/registration/custom_postlogin.php:16
+#: packages/login_destination/single_pages/dashboard/system/registration/custom_postlogin.php:56
+msgid "New Rule"
+msgstr ""
+
+#: packages/login_destination/single_pages/dashboard/system/registration/custom_postlogin.php:16
+msgid "You can add new rules by clicking the %s button."
+msgstr ""
+
+#: packages/login_destination/single_pages/dashboard/system/registration/custom_postlogin.php:25
+msgid "Redirect Who"
+msgstr ""
+
+#: packages/login_destination/single_pages/dashboard/system/registration/custom_postlogin.php:26
+msgid "Redirect To"
+msgstr ""
+
+#: packages/login_destination/src/DestinationPicker.php:239
+msgid "Please specify a value for the destination."
+msgstr ""
+
+#: packages/login_destination/src/DestinationPicker.php:270
+msgctxt "Destination"
+msgid "Not specified"
+msgstr ""
+
+#: packages/login_destination/src/DestinationPicker.php:273
+msgid "Page"
+msgstr ""
+
+#: packages/login_destination/src/DestinationPicker.php:276
+msgid "External URL"
+msgstr ""
+
+#: packages/login_destination/src/DestinationPicker.php:279
+msgid "File"
+msgstr ""
+
+#: packages/login_destination/src/DestinationPicker.php:291
+msgid "Please select"
+msgstr ""
+
+#: packages/login_destination/src/DestinationPicker.php:343
+msgid "URL"
+msgstr ""
+
+#: packages/login_destination/src/DestinationPicker.php:373
+msgid "Choose File"
+msgstr ""
+
+#: packages/login_destination/src/DestinationPicker.php:472
+msgid "Please specify a shorter external URL."
+msgstr ""
+
+#: packages/login_destination/src/GroupSelector.php:72
+msgid "Choose a Group"
+msgstr ""
+
+#: packages/login_destination/src/GroupSelector.php:110
+msgctxt "Group"
+msgid "None Selected"
+msgstr ""
+
+#: packages/login_destination/src/RuleRenderer.php:39
+msgctxt "Rule"
+msgid "enabled"
+msgstr ""
+
+#: packages/login_destination/src/RuleRenderer.php:39
+msgctxt "Rule"
+msgid "disabled"
+msgstr ""
+
+#: packages/login_destination/src/RuleRenderer.php:75
+msgid "Users in group %s"
+msgstr ""
+
+#: packages/login_destination/src/RuleRenderer.php:77
+msgid "Users in group (or sub-groups of) %s"
+msgstr ""
+
+#: packages/login_destination/src/RuleRenderer.php:79
+msgid "Users not in group %s"
+msgstr ""
+
+#: packages/login_destination/src/RuleRenderer.php:81
+msgid "Users not in group (or sub-groups of) %s"
+msgstr ""
+
+#: packages/login_destination/src/RuleRenderer.php:83
+msgid "User is %s"
+msgstr ""
+
+#: packages/login_destination/src/RuleRenderer.php:85
+msgid "User is not %s"
+msgstr ""
+
+#: packages/login_destination/src/RuleRenderer.php:101
+msgid "GROUP NOT FOUND (id: %s)"
+msgstr ""
+
+#: packages/login_destination/src/RuleRenderer.php:116
+msgid "USER NOT FOUND (id: %s)"
+msgstr ""
+
+#: packages/login_destination/src/RuleRenderer.php:138
+msgid "PAGE NOT FOUND (id: %s)"
+msgstr ""
+
+#: packages/login_destination/src/RuleRenderer.php:151
+msgid "NOT CONFIGURED"
+msgstr ""
