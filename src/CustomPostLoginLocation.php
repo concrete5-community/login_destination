@@ -15,12 +15,12 @@ defined('C5_EXECUTE') or die('Access Denied.');
 class CustomPostLoginLocation extends PostLoginLocation
 {
     /**
-     * @var \Concrete\Core\User\User|null|false
+     * @var \Concrete\Core\User\User|false|null
      */
     private $currentlyLoggedInUser = false;
 
     /**
-     * @var int[]|null|false
+     * @var int[]|false|null
      */
     private $groupsOfCurrentlyLoggedInUser = false;
 

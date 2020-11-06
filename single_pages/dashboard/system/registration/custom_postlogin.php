@@ -2,11 +2,12 @@
 
 defined('C5_EXECUTE') or die('Access Denied.');
 
-/* @var Concrete\Core\Page\View\PageView $view */
-/* @var Concrete\Core\Validation\CSRF\Token $token */
-
-/* @var LoginDestination\RuleRenderer $ruleRenderer */
-/* @var LoginDestination\Entity\Rule[] $rules */
+/**
+ * @var Concrete\Core\Page\View\PageView $view
+ * @var Concrete\Core\Validation\CSRF\Token $token
+ * @var LoginDestination\RuleRenderer $ruleRenderer
+ * @var LoginDestination\Entity\Rule[] $rules
+ */
 
 if (empty($rules)) {
     ?>
@@ -44,7 +45,7 @@ if (empty($rules)) {
                    'token' => $token->generate('cpl-rules-sort'),
                ],
            ],
-      ]) ?>); 
+       ]) ?>); 
     });
     </script>
     <?php

@@ -115,15 +115,15 @@ class DestinationPicker
      * Renders a field where users can choose an internal page, an external URL, or a file.
      *
      * @param string $key the name/id of the element
-     * @param int|\Concrete\Core\Page\Page|null|bool $pageID The pre-selected internal page (if === false users won't be able to enter a page ID)
+     * @param int|\Concrete\Core\Page\Page|bool|null $pageID The pre-selected internal page (if === false users won't be able to enter a page ID)
      * @param string|bool $externalUrl The pre-selected external URL (if === false users won't be able to enter an external URL)
-     * @param int|\Concrete\Core\File\File|\Concrete\Core\Entity\File\File|\Concrete\Core\Entity\File\Version|null|bool $fileID The pre-selected file (if === false users won't be able to enter a file ID)
+     * @param int|\Concrete\Core\File\File|\Concrete\Core\Entity\File\File|\Concrete\Core\Entity\File\Version|bool|null $fileID The pre-selected file (if === false users won't be able to enter a file ID)
      * @param array $options Valid values are:
-     * <ul>
-     *     <li><code>required</code> set to a non falsy value if users must choose an internal page/external URL</li>
-     *     <li><code>externalUrlMaxLength</code> the maximum length of the external URL</li>
-     *     <li><code>fileFilters</code> the filter to pass to the file selector</li>
-     * </ul>
+     *                       <ul>
+     *                       <li><code>required</code> set to a non falsy value if users must choose an internal page/external URL</li>
+     *                       <li><code>externalUrlMaxLength</code> the maximum length of the external URL</li>
+     *                       <li><code>fileFilters</code> the filter to pass to the file selector</li>
+     *                       </ul>
      *
      * @see \Concrete\Core\Form\Service\Form::decodeDestination()
      */
@@ -171,21 +171,21 @@ class DestinationPicker
      * @param int $allowedKind The allowed destination kinds (sum of one or more values of DestinationPicker::DESTINATIONKIND_... constants)
      * @param \Concrete\Core\Error\ErrorList\ErrorList $errors Errors will be added to this ErrorList instance
      * @param array $options Allowed values:
-     * <ul>
-     *     <li><code>required</code> set to a non falsy value if users must choose an internal page/external URL</li>
-     *     <li><code>data</code> set to 'get' to parse fields received in GET, set to an array to fetch data from it. Otherwise we'll use POST.</li>
-     *     <li><code>keepOthers</code> set to a non falsy value to get the unselected values (for example: if users specify a page, but previusly specified an external URL, with this flag you'll get the external URL).</li>
-     *     <li><code>externalUrlMaxLength</code> the maximum length of the external URL</li>
-     *     <li><code>externalTooLong</code> the error message to be shown when the user specified a too long external url</li>
-     *     <li><code>noDestinationSpecified</code> the error message to be shown when the user did not specify the destination value</li>
-     * </ul>
+     *                       <ul>
+     *                       <li><code>required</code> set to a non falsy value if users must choose an internal page/external URL</li>
+     *                       <li><code>data</code> set to 'get' to parse fields received in GET, set to an array to fetch data from it. Otherwise we'll use POST.</li>
+     *                       <li><code>keepOthers</code> set to a non falsy value to get the unselected values (for example: if users specify a page, but previusly specified an external URL, with this flag you'll get the external URL).</li>
+     *                       <li><code>externalUrlMaxLength</code> the maximum length of the external URL</li>
+     *                       <li><code>externalTooLong</code> the error message to be shown when the user specified a too long external url</li>
+     *                       <li><code>noDestinationSpecified</code> the error message to be shown when the user did not specify the destination value</li>
+     *                       </ul>
      *
      * @return array Will return an array with these index-based values:
-     * <ul>
-     *     <li><code>0</code>: the selected kind of destination (one of the DestinationPicker::DESTINATIONKIND_... constants, or NULL if no item was selected)</li>
-     *     <li><code>1</code>: the selected internal page ID (or NULL if no page was selected).</li>
-     *     <li><code>2</code>: the selected external URL (or an empty string if no external URL was selected).</li>
-     *     <li><code>3</code>: the selected file ID (or NULL if no file was selected).</li>
+     *               <ul>
+     *               <li><code>0</code>: the selected kind of destination (one of the DestinationPicker::DESTINATIONKIND_... constants, or NULL if no item was selected)</li>
+     *               <li><code>1</code>: the selected internal page ID (or NULL if no page was selected).</li>
+     *               <li><code>2</code>: the selected external URL (or an empty string if no external URL was selected).</li>
+     *               <li><code>3</code>: the selected file ID (or NULL if no file was selected).</li>
      *
      * @see \Concrete\Core\Form\Service\Form::destination()
      */
@@ -254,9 +254,9 @@ class DestinationPicker
      * Build the HTML to select the destination kind.
      *
      * @param string $key
-     * @param int|null|false $pageID
+     * @param int|false|null $pageID
      * @param string|false $externalUrl
-     * @param int|null|false $fileID
+     * @param int|false|null $fileID
      * @param array $options
      * @param string $optionValue [output]
      *
@@ -306,7 +306,7 @@ class DestinationPicker
 
     /**
      * @param string $key
-     * @param int|null|false $pageID
+     * @param int|false|null $pageID
      * @param bool $current
      * @param array $options
      * @param int $kindsHeight
@@ -354,7 +354,7 @@ class DestinationPicker
 
     /**
      * @param string $key
-     * @param int|null|false $fileID
+     * @param int|false|null $fileID
      * @param bool $current
      * @param array $options
      * @param int $kindsHeight

@@ -2,14 +2,15 @@
 
 defined('C5_EXECUTE') or die('Access Denied.');
 
-/* @var Concrete\Core\Page\View\PageView $view */
-/* @var Concrete\Core\Validation\CSRF\Token $token */
-/* @var Concrete\Core\Form\Service\Form $form */
-/* @var Concrete\Core\Form\Service\Widget\UserSelector $userSelector */
-/* @var LoginDestination\GroupSelector $groupSelector */
-/* @var LoginDestination\Entity\Rule $rule */
-/* @var LoginDestination\DestinationPicker $destinationPicker */
-/* @var array $subjectKinds */
+/** @var Concrete\Core\Page\View\PageView $view
+ * @var Concrete\Core\Validation\CSRF\Token $token
+ * @var Concrete\Core\Form\Service\Form $form
+ * @var Concrete\Core\Form\Service\Widget\UserSelector $userSelector
+ * @var LoginDestination\GroupSelector $groupSelector
+ * @var LoginDestination\Entity\Rule $rule
+ * @var LoginDestination\DestinationPicker $destinationPicker
+ * @var array $subjectKinds
+ */
 
 ?>
 <form method="POST" action="<?= $view->action('save', $rule->getRuleID() ?: 'new') ?>">
