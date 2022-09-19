@@ -53,35 +53,12 @@ class CustomPostLoginLocation extends PostLoginLocation
     }
 
     /**
-     * @return \Doctrine\ORM\EntityManagerInterface
-     */
-    private function getEntityManager()
-    {
-        if ($this->entityManager === null) {
-        }
-
-        return $this->entityManager;
-    }
-
-    /**
-     * @return \Concrete\Core\Database\Connection\Connection
-     */
-    private function getConnection()
-    {
-        if ($this->connection === null) {
-            $this->connection = $this->getEntityManager()->getConnection();
-        }
-
-        return $this->connection;
-    }
-
-    /**
      * @return \Concrete\Core\User\User|null
      */
     private function getCurrentlyLoggedInUser()
     {
         if ($this->currentlyLoggedInUser === false) {
-            $u = new User();
+            $u = function_exists('\app') ? \app(User::class) : new User();
             $this->currentlyLoggedInUser = $u->isRegistered() ? $u : null;
         }
 
