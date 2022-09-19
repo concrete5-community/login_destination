@@ -2,6 +2,7 @@
 
 namespace LoginDestination;
 
+use Concrete\Core\Config\Repository\Repository;
 use Concrete\Core\Permission\Checker;
 use Concrete\Core\Url\Resolver\Manager\ResolverManagerInterface;
 use Concrete\Core\User\Group\Group;
@@ -14,7 +15,14 @@ class GroupSelector
     protected static $idCounter = 0;
 
     /**
-     * The application container instance.
+     * The URL resolver manager.
+     *
+     * @var \Concrete\Core\Config\Repository\Repository
+     */
+    protected $config;
+    
+    /**
+     * The URL resolver manager.
      *
      * @var \Concrete\Core\Url\Resolver\Manager\ResolverManagerInterface
      */
@@ -22,12 +30,10 @@ class GroupSelector
 
     /**
      * Initialize the instance.
-     *
-     * @param \Concrete\Core\Application\Application $app
-     * @param ResolverManagerInterface $resolverManager
      */
-    public function __construct(ResolverManagerInterface $resolverManager)
+    public function __construct(Repository $config, ResolverManagerInterface $resolverManager)
     {
+        $this->config = $config;
         $this->resolverManager = $resolverManager;
     }
 
@@ -68,7 +74,13 @@ class GroupSelector
 
         $permissions = new Checker();
         if ($permissions->canAccessGroupSearch()) {
-            $pickURL = (string) $this->resolverManager->resolve(['/ccm/system/dialogs/group/search']);
+            if (version_compare($this->config->get('concrete.version'), '9') >= 0) {
+                $pickURL = (string) $this->resolverManager->resolve(['/ccm/system/dialogs/groups/search']);
+                $clearClass = 'fa fa-times-circle';
+            } else {
+                $pickURL = (string) $this->resolverManager->resolve(['/ccm/system/dialogs/group/search']);
+                $clearClass = 'fa fa-close';
+            }
             $dialogTitle = t('Choose a Group');
             $unselectedStyle = $selectedGroup ? ' style="display: none"' : '';
             $selectedStyle = $selectedGroup ? '' : ' style="display: none"';
@@ -78,7 +90,7 @@ class GroupSelector
 <div class="ccm-item-selector">
     <a id="{$fieldID}--unselected" href="{$pickURL}" dialog-modal="true" dialog-title="{$dialogTitle}" dialog-on-open="window.__currentGroupSelector = &quot;{$fieldID}&quot;" dialog-on-destroy="delete window.__currentGroupSelector" {$unselectedStyle}>{$dialogTitle}</a>
     <div id="{$fieldID}--selected" class="ccm-item-selector-item-selected"{$selectedStyle}>
-        <a id="{$fieldID}--unselect" href="#" class="ccm-item-selector-clear"><i class="fa fa-close"></i></a>
+        <a id="{$fieldID}--unselect" href="#" class="ccm-item-selector-clear"><i class="{$clearClass}"></i></a>
         <div id="{$fieldID}--selected-name">{$selectedGroupName}</div>
     </div>
 </div>

@@ -318,7 +318,7 @@ class DestinationPicker
         if ($pageID === false) {
             $result = '';
         } else {
-            $result = "<div id=\"{$key}__which_P\"" . ($current ? '' : ' style="display:none"') . '>' . $this->pageSelector->selectPage("{$key}__cid", $pageID) . '</div>';
+            $result = "<div id=\"{$key}__which_P\"" . ($current ? '' : ' style="display:none"') . '>' . $this->pageSelector->selectPage("{$key}__cid", $pageID, ['askIncludeSystemPages' => true]) . '</div>';
             $kindsHeight = max($kindsHeight, static::FIELDHEIGHT_PAGESELECTOR);
         }
 

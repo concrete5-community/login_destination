@@ -50,17 +50,15 @@ defined('C5_EXECUTE') or die('Access Denied.');
 
     <div class="ccm-dashboard-form-actions-wrapper">
         <div class="ccm-dashboard-form-actions">
-            <a class="pull-left btn btn-default" href="<?= URL::to('/dashboard/system/registration/custom_postlogin') ?>"><?= t('Cancel') ?></a>
-            <div class="pull-right">
-                <?php
-                if ($rule->getRuleID()) {
-                    ?>
-                    <button class="btn btn-danger" id="ld-delete-rule"><?= t('Delete') ?></button>
-                    <?php
-                }
+            <a class="btn btn-default" href="<?= URL::to('/dashboard/system/registration/custom_postlogin') ?>"><?= t('Cancel') ?></a>
+            <?php
+            if ($rule->getRuleID()) {
                 ?>
-                <button class="btn btn-primary" type="submit"><?= t('Save') ?></button>
-            </div>
+                <button class="btn btn-danger" id="ld-delete-rule"><?= t('Delete') ?></button>
+                <?php
+            }
+            ?>
+            <button class="btn btn-primary" type="submit"><?= t('Save') ?></button>
         </div>
     </div>
 

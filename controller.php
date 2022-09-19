@@ -61,6 +61,16 @@ class Controller extends Package implements ProviderAggregateInterface
     /**
      * {@inheritdoc}
      *
+     * @see \Concrete\Core\Package\Package::getPackageAutoloaderRegistries()
+     */
+    public function getPackageAutoloaderRegistries()
+    {
+        return class_exists(CustomPostLoginLocation::class) ? [] : ['src' => 'LoginDestination'];
+    }
+    
+    /**
+     * {@inheritdoc}
+     *
      * @see \Concrete\Core\Database\EntityManager\Provider\ProviderAggregateInterface::getEntityManagerProvider()
      */
     public function getEntityManagerProvider()
@@ -77,7 +87,6 @@ class Controller extends Package implements ProviderAggregateInterface
      */
     public function install()
     {
-        $this->registerAutoload();
         parent::install();
         $this->installXml();
     }
@@ -98,7 +107,6 @@ class Controller extends Package implements ProviderAggregateInterface
      */
     public function on_start()
     {
-        $this->registerAutoload();
         $this->app->bind(PostLoginLocation::class, CustomPostLoginLocation::class);
     }
 
