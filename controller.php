@@ -115,14 +115,6 @@ class Controller extends Package implements ProviderAggregateInterface
      */
     private function installXml()
     {
-        parent::installContentFile('config/install.xml');
-    }
-
-    private function registerAutoload()
-    {
-        $autoloader = $this->getPackagePath() . '/vendor/autoload.php';
-        if (file_exists($autoloader)) {
-            require_once $autoloader;
-        }
+        $this->installContentFile('config/install.xml');
     }
 }
