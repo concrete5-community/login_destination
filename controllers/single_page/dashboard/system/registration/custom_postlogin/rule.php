@@ -81,6 +81,10 @@ class Rule extends DashboardPageController
                 if ($group === null) {
                     throw new UserMessageException(t('Please specify a group.'));
                 }
+                if ($subjectID == GUEST_GROUP_ID) {
+                    $groupName = tc('GroupName', 'Guest');
+                    throw new UserMessageException(t("You can't choose the %s group.", $groupName));
+                }
             } elseif ($subjectKind === RuleEntity::SUBJECTKIND_USER_IS || $subjectKind === RuleEntity::SUBJECTKIND_USER_ISNOT) {
                 $subjectID = $post->get('selectedUser');
                 $user = $valn->integer($subjectID, 1) ? User::getByUserID($subjectID) : null;
