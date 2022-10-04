@@ -35,7 +35,7 @@ class RuleRenderer
         $editURL = (string) $this->resolver->resolve(['/dashboard/system/registration/custom_postlogin/rule', $ruleID]);
         $whoText = $this->getWhoText($rule);
         list($destinationText, $destinationURL) = $this->getDestinationTexts($rule);
-        $stateClass = $rule->isRuleEnabled() ? 'label-success' : 'label-danger';
+        $stateClass = $rule->isRuleEnabled() ? 'label-success text-success' : 'label-danger text-danger';
         $stateText = $rule->isRuleEnabled() ? tc('Rule', 'enabled') : tc('Rule', 'disabled');
 
         return <<<EOT
