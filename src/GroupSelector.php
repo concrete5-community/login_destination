@@ -2,7 +2,9 @@
 
 namespace LoginDestination;
 
+use Concrete\Core\Application\Application;
 use Concrete\Core\Config\Repository\Repository;
+use Concrete\Core\Form\Service\Widget\GroupSelector as CoreGroupSelector;
 use Concrete\Core\Permission\Checker;
 use Concrete\Core\Url\Resolver\Manager\ResolverManagerInterface;
 use Concrete\Core\User\Group\Group;
@@ -29,12 +31,20 @@ class GroupSelector
     protected $resolverManager;
 
     /**
+     * The application instance used to create the core group selector for Concrete 9.2.0+
+     *
+     * @var \Concrete\Core\Application\Application
+     */
+    protected $app;
+
+    /**
      * Initialize the instance.
      */
-    public function __construct(Repository $config, ResolverManagerInterface $resolverManager)
+    public function __construct(Repository $config, ResolverManagerInterface $resolverManager, Application $app)
     {
         $this->config = $config;
         $this->resolverManager = $resolverManager;
+        $this->app = $app;
     }
 
     /**
@@ -43,8 +53,6 @@ class GroupSelector
      * @param string $fieldName the name of the field
      * @param int|\Concrete\Core\User\Group\Group|null $gID the ID of the group (or a Group instance) to be initially selected
      *
-     * @return string
-     *
      * @example
      * <code>
      *     $groupSelector->selectSingleGroup('groupID', 123);
@@ -52,6 +60,13 @@ class GroupSelector
      */
     public function selectSingleGroup($fieldName, $gID = null)
     {
+        $permissions = new Checker();
+        $canAccessGroupSearch = $permissions->canAccessGroupSearch();
+            
+        if ($canAccessGroupSearch && version_compare($this->config->get('concrete.version'), '9.2.0a3') >= 0) {
+            $this->app->make(CoreGroupSelector::class)->selectGroup($fieldName, $gID);
+            return;
+        }
         $v = View::getRequestInstance();
         $v->requireAsset('core/groups');
 
@@ -72,8 +87,7 @@ class GroupSelector
             $fieldID = str_replace(['[', ']', ''], $fieldName) . '_' . self::$idCounter++;
         }
 
-        $permissions = new Checker();
-        if ($permissions->canAccessGroupSearch()) {
+        if ($canAccessGroupSearch) {
             if (version_compare($this->config->get('concrete.version'), '9') >= 0) {
                 $pickURL = (string) $this->resolverManager->resolve(['/ccm/system/dialogs/groups/search']);
                 $clearClass = 'fa fa-times-circle';
@@ -131,6 +145,6 @@ EOT
             ;
         }
 
-        return $result;
+        echo $result;
     }
 }

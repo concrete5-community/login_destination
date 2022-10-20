@@ -36,7 +36,7 @@ defined('C5_EXECUTE') or die('Access Denied.');
         <?= $form->label('subjectKind', t('Rule Kind')) ?>
         <?= $form->select('subjectKind', $subjectKinds, (string) $rule->getRuleSubjectKind(), ['required' => 'required']) ?>
         <div class="ld-pick" id="ld-pick-g"<?= strpos((string) $rule->getRuleSubjectKind(), 'g') === 0 ? '' : ' style="display: none"' ?>>
-            <?= $groupSelector->selectSingleGroup('selectedGroup', strpos((string) $rule->getRuleSubjectKind(), 'g') === 0 ? $rule->getRuleSubjectID() : null) ?>
+            <?php $groupSelector->selectSingleGroup('selectedGroup', strpos((string) $rule->getRuleSubjectKind(), 'g') === 0 ? $rule->getRuleSubjectID() : null) ?>
         </div>
         <div class="ld-pick" id="ld-pick-u"<?= strpos((string) $rule->getRuleSubjectKind(), 'u') === 0 ? '' : ' style="display: none"' ?>>
             <?= $userSelector->selectUser('selectedUser', strpos((string) $rule->getRuleSubjectKind(), 'u') === 0 ? $rule->getRuleSubjectID() : null) ?>
