@@ -2,19 +2,17 @@
 
 namespace LoginDestination\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 defined('C5_EXECUTE') or die('Access Denied.');
 
 /**
  * Represents a post-login location rule.
  *
- * @ORM\Entity(
+ * @Doctrine\ORM\Mapping\Entity(
  * )
- * @ORM\Table(
+ * @Doctrine\ORM\Mapping\Table(
  *     name="LoginDestinationRules",
  *     indexes={
- *         @ORM\Index(name="IX_LoginDestinationRules_Sort", columns={"ruleOrder", "ruleID"})
+ *         @Doctrine\ORM\Mapping\Index(name="IX_LoginDestinationRules_Sort", columns={"ruleOrder", "ruleID"})
  *     },
  *     options={
  *         "comment": "Post-login location rules"
@@ -68,9 +66,9 @@ class Rule
     /**
      * The rule ID.
      *
-     * @ORM\Column(type="integer", options={"unsigned": true, "comment": "Rule ID"})
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @Doctrine\ORM\Mapping\Column(type="integer", options={"unsigned": true, "comment": "Rule ID"})
+     * @Doctrine\ORM\Mapping\Id
+     * @Doctrine\ORM\Mapping\GeneratedValue(strategy="AUTO")
      *
      * @var int|null
      */
@@ -79,7 +77,7 @@ class Rule
     /**
      * The rule order position.
      *
-     * @ORM\Column(type="integer", nullable=false, options={"unsigned": true, "comment": "Rule order position"})
+     * @Doctrine\ORM\Mapping\Column(type="integer", nullable=false, options={"unsigned": true, "comment": "Rule order position"})
      *
      * @var int
      */
@@ -88,7 +86,7 @@ class Rule
     /**
      * Is the rule enabled?
      *
-     * @ORM\Column(type="boolean", nullable=false, options={"comment": "Is the rule enabled?"}))
+     * @Doctrine\ORM\Mapping\Column(type="boolean", nullable=false, options={"comment": "Is the rule enabled?"}))
      *
      * @var bool
      */
@@ -97,7 +95,7 @@ class Rule
     /**
      * The rule subject kind.
      *
-     * @ORM\Column(type="string", length=2, nullable=false, options={"comment": "Rule subject kind"})
+     * @Doctrine\ORM\Mapping\Column(type="string", length=2, nullable=false, options={"comment": "Rule subject kind"})
      *
      * @var string
      */
@@ -106,7 +104,7 @@ class Rule
     /**
      * The rule subject ID.
      *
-     * @ORM\Column(type="integer", nullable=false, options={"unsigned": true, "comment": "Rule subject ID"})
+     * @Doctrine\ORM\Mapping\Column(type="integer", nullable=false, options={"unsigned": true, "comment": "Rule subject ID"})
      *
      * @var int
      */
@@ -115,7 +113,7 @@ class Rule
     /**
      * The ID of the destination page.
      *
-     * @ORM\Column(type="integer", nullable=true, options={"unsigned": true, "comment": "ID of the destination page"})
+     * @Doctrine\ORM\Mapping\Column(type="integer", nullable=true, options={"unsigned": true, "comment": "ID of the destination page"})
      *
      * @var int|null
      */
@@ -124,7 +122,7 @@ class Rule
     /**
      * The external URL destination.
      *
-     * @ORM\Column(type="text", nullable=false, options={"comment": "External URL destination"})
+     * @Doctrine\ORM\Mapping\Column(type="text", nullable=false, options={"comment": "External URL destination"})
      *
      * @var string
      */
