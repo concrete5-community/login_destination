@@ -30,26 +30,47 @@ class CustomPostLoginLocation extends PostLoginLocation
     private $parentGroupsOf = [];
 
     /**
+     * @var \LoginDestination\Entity\Rule[]|null
+     */
+    private $rules;
+
+    /**
+     * {@inheritdoc}
+     *
+     * @see \Concrete\Core\User\PostLoginLocation::getSessionPostLoginUrl()
+     */
+    public function getSessionPostLoginUrl($resetSessionPostLoginUrl = false)
+    {
+        $parentResult = parent::getSessionPostLoginUrl($resetSessionPostLoginUrl);
+        foreach ($this->getRules() as $rule) {
+            if ($rule->isSessionValueOverwritten() && $this->isRuleApplicable($rule)) {
+                $url = $this->getFinalUrl($rule);
+                if ($url !== '') {
+                    return $url;
+                }
+            }
+        }
+
+        return $parentResult;
+    }
+
+    /**
      * {@inheritdoc}
      *
      * @see \Concrete\Core\User\PostLoginLocation::getDefaultPostLoginUrl()
      */
     public function getDefaultPostLoginUrl()
     {
-        $result = '';
         foreach ($this->getRules() as $rule) {
-            if ($this->isRuleApplicable($rule)) {
-                $result = $this->getFinalUrl($rule);
-                if ($result !== '') {
-                    break;
+            if (!$rule->isSessionValueOverwritten() && $this->isRuleApplicable($rule)) {
+                $url = $this->getFinalUrl($rule);
+                if ($url !== '') {
+                    return $url;
                 }
             }
         }
-        if ($result === '') {
-            $result = parent::getDefaultPostLoginUrl();
-        }
-
-        return $result;
+        
+        return parent::getDefaultPostLoginUrl();
     }
 
     /**
@@ -84,25 +105,20 @@ class CustomPostLoginLocation extends PostLoginLocation
     }
 
     /**
-     * @return Rule[]|\Generator
+     * @return \LoginDestination\Entity\Rule[]|\Generator
      */
     private function getRules()
     {
-        $app = Application::getFacadeApplication();
-        $entityManager = $app->make(EntityManagerInterface::class);
-        $connection = $entityManager->getConnection();
-        $ids = $connection->fetchAll('SELECT ruleID FROM LoginDestinationRules WHERE ruleEnabled = 1 ORDER BY ruleOrder, ruleID');
-        foreach ($ids as $id) {
-            $rule = $entityManager->find(Rule::class, $id);
-            if ($rule !== null) {
-                yield $rule;
-            }
+        if ($this->rules === null) {
+            $app = Application::getFacadeApplication();
+            $entityManager = $app->make(EntityManagerInterface::class);
+            $repo = $entityManager->getRepository(Rule::class);
+            $this->rules = $repo->findBy(['ruleEnabled' => 1], ['ruleOrder' => 'ASC', 'ruleID' => 'ASC']);
         }
+        return $this->rules;
     }
 
     /**
-     * @param Rule $rule
-     *
      * @return bool
      */
     private function isRuleApplicable(Rule $rule)
@@ -192,8 +208,6 @@ class CustomPostLoginLocation extends PostLoginLocation
     }
 
     /**
-     * @param Rule $rule
-     *
      * @return string
      */
     private function getFinalUrl(Rule $rule)

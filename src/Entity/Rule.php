@@ -93,6 +93,15 @@ class Rule
     protected $ruleEnabled;
 
     /**
+     * Overwrite session value?
+     *
+     * @Doctrine\ORM\Mapping\Column(type="boolean", nullable=false, options={"comment": "Overwrite session value?"}))
+     *
+     * @var bool
+     */
+    protected $overwriteSessionValue;
+
+    /**
      * The rule subject kind.
      *
      * @Doctrine\ORM\Mapping\Column(type="string", length=2, nullable=false, options={"comment": "Rule subject kind"})
@@ -177,11 +186,36 @@ class Rule
      *
      * @param bool $value
      *
-     * @return t$his
+     * @return $this
      */
     public function setRuleEnabled($value)
     {
         $this->ruleEnabled = $value ? true : false;
+
+        return $this;
+    }
+
+
+    /**
+     * Overwrite session value?
+     *
+     * @return bool
+     */
+    public function isSessionValueOverwritten()
+    {
+        return $this->overwriteSessionValue;
+    }
+
+    /**
+     * Overwrite session value?
+     *
+     * @param bool $value
+     *
+     * @return $this
+     */
+    public function setOverwriteSessionValue($value)
+    {
+        $this->overwriteSessionValue = $value ? true : false;
 
         return $this;
     }

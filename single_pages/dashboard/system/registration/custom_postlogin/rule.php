@@ -31,6 +31,22 @@ defined('C5_EXECUTE') or die('Access Denied.');
             </label>
         </div>
     </div>
+
+    <div class="form-group">
+        <?= $form->label('', t("Override destination stored in users' session?")) ?>
+        <div class="radio">
+            <label>
+                <?= $form->radio('overwriteSessionValue', 'Y', (bool) $rule->isSessionValueOverwritten()) ?>
+                <?= t('Yes')?>
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <?= $form->radio('overwriteSessionValue', 'N', !(bool) $rule->isSessionValueOverwritten()) ?>
+                <?= t('No')?>
+            </label>
+        </div>
+    </div>
     
     <div class="form-group">
         <?= $form->label('subjectKind', t('Rule Kind')) ?>

@@ -23,7 +23,10 @@ class Rule extends DashboardPageController
         $subjectKinds = [];
         if ($id === 'new') {
             $rule = new RuleEntity();
-            $rule->setRuleEnabled(true);
+            $rule
+                ->setRuleEnabled(true)
+                ->setOverwriteSessionValue(false)
+            ;
             $subjectKinds[''] = t('Please Select');
         } else {
             $id = $id && is_scalar($id) ? (int) $id : null;
@@ -101,6 +104,7 @@ class Rule extends DashboardPageController
             }
             $rule
                 ->setRuleEnabled($post->get('enabled') === 'Y')
+                ->setOverwriteSessionValue($post->get('overwriteSessionValue') === 'Y')
                 ->setRuleSubject($subjectKind, $subjectID)
                 ->setRuleDestinationPageID($cid)
                 ->setRuleDestinationExternalURL($url)
