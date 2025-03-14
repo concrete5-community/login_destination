@@ -35,7 +35,7 @@ class RuleRenderer
         $editURL = (string) $this->resolver->resolve(['/dashboard/system/registration/custom_postlogin/rule', $ruleID]);
         $whoText = $this->getWhoText($rule);
         list($destinationText, $destinationURL) = $this->getDestinationTexts($rule);
-        $stateClass = $rule->isRuleEnabled() ? 'label-success text-success' : 'label-danger text-danger';
+        $stateClass = self::getStateCssClass($rule->isRuleEnabled());
         $stateText = $rule->isRuleEnabled() ? tc('Rule', 'enabled') : tc('Rule', 'disabled');
 
         return <<<EOT
@@ -56,7 +56,7 @@ class RuleRenderer
         <a href="{$destinationURL}" target="_blank">{$destinationText}</a>
     </td>
     <td class="cpl-rule-state">
-        <span class="label {$stateClass}">{$stateText}</span>
+        <span class="{$stateClass}">{$stateText}</span>
     </td>
 </tr>
 EOT
@@ -155,5 +155,29 @@ EOT
         }
 
         return $result;
+    }
+
+    /**
+     * @param bool $enabled
+     *
+     * @return string
+     */
+    private static function getStateCssClass($enabled)
+    {
+        static $cache;
+        if (!isset($cache)) {
+            if (version_compare(APP_VERSION, '9') >= 0) {
+                $cache = [
+                    'badge text-bg-danger',
+                    'badge text-bg-success',
+                ];
+            } else {
+                $cache = [
+                    'label label-danger',
+                    'label label-success',
+                ];
+            }
+        }
+        return $cache[$enabled ? 1 : 0];
     }
 }
