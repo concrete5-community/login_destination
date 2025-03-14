@@ -169,7 +169,7 @@ class DestinationPicker
      *
      * @param string $key The key of the destination field
      * @param int $allowedKind The allowed destination kinds (sum of one or more values of DestinationPicker::DESTINATIONKIND_... constants)
-     * @param \Concrete\Core\Error\ErrorList\ErrorList $errors Errors will be added to this ErrorList instance
+     * @param \Concrete\Core\Error\ErrorList\ErrorList|null $errors Errors will be added to this ErrorList instance
      * @param array $options Allowed values:
      *                       <ul>
      *                       <li><code>required</code> set to a non falsy value if users must choose an internal page/external URL</li>
@@ -189,7 +189,7 @@ class DestinationPicker
      *
      * @see \Concrete\Core\Form\Service\Form::destination()
      */
-    public function decodeDestination($key, $allowedKind, ErrorList &$errors = null, array $options = [])
+    public function decodeDestination($key, $allowedKind, &$errors = null, array $options = [])
     {
         $allowedKind = (int) $allowedKind;
         if ($errors === null) {
